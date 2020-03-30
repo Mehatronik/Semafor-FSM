@@ -1,0 +1,23 @@
+--cpu Cortex-M3
+"semafor fsm\startup_stm32f103xb.o"
+"semafor fsm\main.o"
+"semafor fsm\stm32f1xx_it.o"
+"semafor fsm\stm32f1xx_hal_msp.o"
+"semafor fsm\fsmsemafor.o"
+"semafor fsm\stm32f1xx_hal_gpio_ex.o"
+"semafor fsm\stm32f1xx_hal_tim.o"
+"semafor fsm\stm32f1xx_hal_tim_ex.o"
+"semafor fsm\stm32f1xx_hal.o"
+"semafor fsm\stm32f1xx_hal_rcc.o"
+"semafor fsm\stm32f1xx_hal_rcc_ex.o"
+"semafor fsm\stm32f1xx_hal_gpio.o"
+"semafor fsm\stm32f1xx_hal_dma.o"
+"semafor fsm\stm32f1xx_hal_cortex.o"
+"semafor fsm\stm32f1xx_hal_pwr.o"
+"semafor fsm\stm32f1xx_hal_flash.o"
+"semafor fsm\stm32f1xx_hal_flash_ex.o"
+"semafor fsm\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "Semafor FSM\Semafor FSM.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Semafor FSM.map" -o "Semafor FSM\Semafor FSM.axf"
