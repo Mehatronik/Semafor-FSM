@@ -36,7 +36,7 @@ static void go1Lights(void)
 	HAL_GPIO_WritePin(red2_GPIO_Port, red2_Pin, GPIO_PIN_SET);
 	
 	//reset timer, tj. start tajmera
-//	msTicker = 10000;				//10 sek.
+//	msTicker = 10000;				//10 sek.						//ipak ne moze ovako jednostavno, jer u mainu se ova f-ja poziva non-stop i stalno se resetuje tajmer. Potrebno prokljuviti.
 //	msTickerEnable = 1;
 	HAL_Delay(10000);
 }
