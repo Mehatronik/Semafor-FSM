@@ -221,10 +221,8 @@ void TIM2_IRQHandler(void)
 		msTicker--;
 	
 	if(msTicker == 0)
-	{
 		msTickerEnable = 0;
-		msTicker = 0;
-	}
+	
 		
 	
   /* USER CODE END TIM2_IRQn 1 */

@@ -1,19 +1,29 @@
 #include "fsmSemafor.h"
 
+
+
 extern uint16_t msTicker;		//iz stm32f1xx_it.c fajla
 extern uint8_t msTickerEnable;
 
+#define TICKER msTicker
+#define TICKER_enable msTickerEnable
 
 uint8_t check_Timer_Elapsed(void)
 {
-	
-	if (msTicker == 0)
+	//predstavlja ulaz u state-u
+	if (TICKER == 0)
 		return 1;
 	else
 		return 0;
 
 	 //0 - osttani u trenutnom stanu
-	 //1 - idi u naredno stanje
+	 //1 - idi u naredno stanje (tajmer istekao)
+}
+
+static void timerStart(uint32_t period)
+{
+	TICKER = period;	//u ms
+	TICKER_enable = 1;
 }
 
 
@@ -38,7 +48,8 @@ static void go1Lights(void)
 	//reset timer, tj. start tajmera
 //	msTicker = 10000;				//10 sek.						//ipak ne moze ovako jednostavno, jer u mainu se ova f-ja poziva non-stop i stalno se resetuje tajmer. Potrebno prokljuviti.
 //	msTickerEnable = 1;
-	HAL_Delay(10000);
+	//HAL_Delay(10000);
+	timerStart(10000);
 }
 
 static void go2Lights(void)
@@ -49,7 +60,8 @@ static void go2Lights(void)
 	
 //	msTicker = 10000;				//10 sek.
 //	msTickerEnable = 1;
-	HAL_Delay(10000);
+	//HAL_Delay(10000);
+	timerStart(10000);
 }
 
 static void go2BlinkLights(void)
@@ -90,7 +102,8 @@ static void yellow1Lights(void)
 	
 //	msTicker = 3000;				
 //	msTickerEnable = 1;
-	HAL_Delay(3000);
+	//HAL_Delay(3000);
+	timerStart(3000);
 }
 
 static void yellow2Lights(void)
@@ -101,7 +114,8 @@ static void yellow2Lights(void)
 	
 //	msTicker = 3000;				
 //	msTickerEnable = 1;
-	HAL_Delay(3000);
+	//HAL_Delay(3000);
+	timerStart(3000);
 }
 
 static void bothStopLights(void)
@@ -112,7 +126,8 @@ static void bothStopLights(void)
 	
 //	msTicker = 2000;				
 //	msTickerEnable = 1;
-	HAL_Delay(2000);
+	//HAL_Delay(2000);
+	timerStart(2000);
 }
 
 static void prepareToGo1Lights(void)
@@ -124,7 +139,8 @@ static void prepareToGo1Lights(void)
 	
 //	msTicker = 3000;				
 //	msTickerEnable = 1;
-	HAL_Delay(3000);
+	//HAL_Delay(3000);
+	timerStart(3000);
 }
 
 static void prepareToGo2Lights(void)
@@ -136,7 +152,8 @@ static void prepareToGo2Lights(void)
 	
 //	msTicker = 3000;				
 //	msTickerEnable = 1;
-	HAL_Delay(3000);
+//	HAL_Delay(3000);
+	timerStart(3000);
 }
 
 

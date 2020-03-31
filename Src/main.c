@@ -99,16 +99,28 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	
-	uint8_t indeks = GO2;
-	uint8_t ifTimerElapsed = 0;
+	uint8_t state = GO2;		//initial state
+	uint8_t input = 0;
+	uint8_t flag1 = 1;
 	
   while (1)
   {
     /* USER CODE END WHILE */
 		
-		(fsm_Semafor[indeks].fncPtr)();
-		//ifTimerElapsed = check_Timer_Elapsed();
-		indeks = fsm_Semafor[indeks].nextState[1];
+		//Quasi-nonblocking FSM
+		
+		if(flag1)		//call output function (and start timer inside it) only once
+		{
+			flag1 = 0;
+			(fsm_Semafor[state].fncPtr)();		//call output function from current state
+		}
+ 
+		if( (input = check_Timer_Elapsed()) ) //if istekao
+		{
+			state = fsm_Semafor[state].nextState[input];
+			flag1 = 1;
+		}
+		
 		
     /* USER CODE BEGIN 3 */
   }
